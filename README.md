@@ -5,7 +5,7 @@ This example demonstrates how to update adjacent values on selecting an item in 
 The main steps are:
 
 - Define [onEditorPreparing](https://js.devexpress.com/Documentation/ApiReference/UI_Widgets/dxDataGrid/Configuration/#onEditorPreparing) to override the built-in `onValueChanged` event handler for a lookup column editor.
-- Call the `setValue` method with the `selectItem` option as a parameter to pass changes to the grid.  
+- Call the `setValue` method with the [selectedItem](https://js.devexpress.com/Documentation/ApiReference/UI_Widgets/dxSelectBox/Configuration/#selectedItem) option as a parameter to pass changes to the grid.  
 - Define the [setCellValue](https://js.devexpress.com/Documentation/ApiReference/UI_Widgets/dxDataGrid/Configuration/columns/#setCellValue) callback function in a lookup column and use the `newData` parameter to update adjacent cells. The `value` parameter will represent an item you selected.
 
 
