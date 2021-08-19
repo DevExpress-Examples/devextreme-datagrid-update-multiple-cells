@@ -1,6 +1,4 @@
-
-var employees =
-[
+export const employees = [
     { ID: 1, CustomerID: 1, Address: "Markušica", Phone: "+385 674 958 1641" },
     { ID: 2, CustomerID: 2, Address: "Itaberaí", Phone: "+55 491 329 4084" },
     { ID: 3, CustomerID: 3, Address: "Volgograd", Phone: "+7 745 619 7799" },
@@ -18,8 +16,7 @@ var employees =
     { ID: 15, CustomerID: 15, Address: "Santa Fé do Sul", Phone: "+55 867 691 7097" }
 ];
 
-var lookupData =
-[
+export const customers = [
     {
         CustomerID: 1,
         CustomerName: "Kaela Phonix",

@@ -1,6 +1,11 @@
 # Angular
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.5.
+Take a look at the following files of this example to see the required code: 
+
+- [src/app/app.component.html](src/app/app.component.html)
+- [src/app/app.component.ts](src/app/app.component.ts)
+
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.1.
 
 ## Development server
 
@@ -22,9 +27,8 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
-
 ## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 
 To get more help on DevExtreme submit an issue on [GitHub](https://github.com/DevExpress/devextreme/issues) or [Support Center](https://www.devexpress.com/Support/Center/Question/Create)
