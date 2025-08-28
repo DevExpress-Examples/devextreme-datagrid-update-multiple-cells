@@ -8,7 +8,7 @@
 
 This example demonstrates how to update multiple cell values after a user selects an item in the editor. In the example, when you select a new value in the "Name" column, the values in the "Address" and "Phone" columns also change.
 
-![DataGrid with updated cell values](./datagrid-update-cell-values.gif)
+![DataGrid with updated cell values](./images/datagrid-update-cell-values.gif)
 
 ## Implementation Details
 
@@ -27,8 +27,8 @@ This example demonstrates how to update multiple cell values after a user select
     - [App.vue](Vue/src/App.vue)
 - **React**
     - [App.js](React/src/App.js)
-- **ASP.NET**    
-    - [Index.cshtml](ASP.NET/Views/Home/Index.cshtml)
+- **ASP.NET Core**    
+    - [Index.cshtml](ASP.NET Core/Views/Home/Index.cshtml)
 
 ## Documentation
 
