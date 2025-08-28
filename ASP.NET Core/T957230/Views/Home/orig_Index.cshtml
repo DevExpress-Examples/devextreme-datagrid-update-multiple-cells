@@ -1,0 +1,50 @@
+@using T957230.Models
+
+<h2>Home</h2>
+
+@(Html.DevExtreme().DataGrid<Employee>()
+    .ShowBorders(true)
+    .DataSource(d => d.Mvc().Controller("SampleData")
+        .LoadAction("GetEmployees")
+        .InsertAction("InsertEmployee")
+        .UpdateAction("UpdateEmployee")
+        .Key("ID")
+    )
+    .Editing(e => e
+        .Mode(GridEditMode.Row)
+        .AllowAdding(true)
+        .AllowUpdating(true)
+    )
+    .Columns(columns => {
+        columns.AddFor(m => m.CustomerID)
+            .Caption("Name")
+            .SetCellValue("setCustomerIDValue")
+            .Lookup(lookup => lookup
+                .DataSource(d => d.Mvc().Controller("SampleData").LoadAction("GetLookupData").Key("CustomerID"))
+                .ValueExpr("CustomerID")
+                .DisplayExpr("CustomerName")
+            );
+
+        columns.AddFor(m => m.Address);
+
+        columns.AddFor(m => m.Phone);
+    })
+    .OnEditorPreparing("onEditorPreparing")
+)
+
+<script>
+    function setCustomerIDValue(rowData, value) {
+        rowData.CustomerID = value.CustomerID;
+        rowData.Address = value.Address;
+        rowData.Phone = value.Phone;
+    }
+
+    function onEditorPreparing(e) {
+        if (e.parentType === "dataRow" && e.dataField === "CustomerID") {
+            e.editorOptions.onValueChanged = function (args) {
+                const selectedItem = args.component.option("selectedItem");
+                e.setValue(selectedItem);
+            }
+        }
+    }
+</script>
