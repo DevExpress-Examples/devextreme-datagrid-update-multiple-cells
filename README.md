@@ -19,14 +19,21 @@ This example demonstrates how to update multiple cell values after a user select
 ## Files to Review
 
 - **jQuery**
-    - [index.js](jQuery/index.js)    
+    - [index.js](jQuery/src/index.js)
+    - [data.js](jQuery/src/data.js)
 - **Angular**
     - [app.component.html](Angular/src/app/app.component.html)
-    - [app.component.ts](Angular/src/app/app.component.ts)  
+    - [app.component.ts](Angular/src/app/app.component.ts)
+    - [app.service.ts](Angular/src/app/app.service.ts)
+    - [types.ts](Angular/src/app/types.ts)
 - **Vue**
-    - [App.vue](Vue/src/App.vue)
+    - [HomeContent.vue](Vue/src/components/HomeContent.vue)
+    - [data.ts](Vue/src/data.ts)
+    - [types.ts](Vue/src/types.ts)
 - **React**
-    - [App.js](React/src/App.js)
+    - [App.tsx](React/src/App.tsx)
+    - [data.ts](React/src/data.ts)
+    - [types.ts](React/src/types.ts)
 - **ASP.NET Core**    
     - [Index.cshtml](ASP.NET Core/Views/Home/Index.cshtml)
 
