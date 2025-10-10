@@ -1,3 +1,21 @@
-<div class="default-style">
-  <dx-button [text]="buttonText" (onClick)="onClick($event)"></dx-button>
-</div>
+<dx-data-grid
+  [dataSource]="employees"
+  (onEditorPreparing)="onEditorPreparing($event)">
+  <dxo-editing
+    [allowUpdating]="true"
+    [allowAdding]="true">
+  </dxo-editing>
+
+  <dxi-column
+    caption="Name"
+    dataField="CustomerID"
+    [setCellValue]="setCellValue">
+    <dxo-lookup
+      [dataSource]="customers"
+      valueExpr="CustomerID"
+      displayExpr="CustomerName">
+    </dxo-lookup>
+  </dxi-column>
+  <dxi-column dataField="Address"></dxi-column>
+  <dxi-column dataField="Phone"></dxi-column>
+</dx-data-grid>
