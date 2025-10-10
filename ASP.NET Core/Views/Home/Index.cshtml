@@ -2,28 +2,51 @@
 
 <h2>Home</h2>
 
-@(Html.DevExtreme().DataGrid<SampleOrder>()
+@(Html.DevExtreme().DataGrid<Employee>()
     .ShowBorders(true)
-    .DataSource(d => d.Mvc().Controller("SampleData").LoadAction("Get").Key("OrderID"))
-    .Columns(columns => {
-        columns.AddFor(m => m.OrderID);
-        columns.AddFor(m => m.OrderDate);
-        columns.AddFor(m => m.CustomerName);
-        columns.AddFor(m => m.ShipCountry);
-        columns.AddFor(m => m.ShipCity);
-    })
-    .Paging(p => p.PageSize(10))
-    .FilterRow(f => f.Visible(true))
-    .HeaderFilter(f => f.Visible(true))
-    .GroupPanel(p => p.Visible(true))
-    .Grouping(g => g.AutoExpandAll(false))
-    .RemoteOperations(true)
-    .Summary(s => s
-        .TotalItems(totalItems => {
-            totalItems.AddFor(m => m.ShipCity).SummaryType(SummaryType.Count);
-        })
-        .GroupItems(groupItems => {
-            groupItems.Add().SummaryType(SummaryType.Count);
-        })
+    .DataSource(d => d.Mvc()
+    .Controller("Employees")
+    .LoadAction("GetEmployees")
+    .InsertAction("InsertEmployee")
+    .UpdateAction("UpdateEmployee")
+    .DeleteAction("DeleteEmployee")
+        .Key("ID")
     )
+    .Editing(e => e
+        .Mode(GridEditMode.Row)
+        .AllowAdding(true)
+        .AllowUpdating(true)
+    )
+    .Columns(columns => {
+        columns.AddFor(m => m.CustomerID)
+            .Caption("Name")
+            .SetCellValue("setCustomerIDValue")
+            .Lookup(lookup => lookup
+                .DataSource(d => d.Mvc().Controller("Customers").LoadAction("GetCustomers").Key("CustomerID"))
+                .ValueExpr("CustomerID")
+                .DisplayExpr("CustomerName")
+            );
+
+        columns.AddFor(m => m.Address);
+
+        columns.AddFor(m => m.Phone);
+    })
+    .OnEditorPreparing("onEditorPreparing")
 )
+
+<script>
+    function setCustomerIDValue(rowData, value) {
+        rowData.CustomerID = value.CustomerID;
+        rowData.Address = value.Address;
+        rowData.Phone = value.Phone;
+    }
+
+    function onEditorPreparing(e) {
+        if (e.parentType === "dataRow" && e.dataField === "CustomerID") {
+            e.editorOptions.onValueChanged = function (args) {
+                const selectedItem = args.component.option("selectedItem");
+                e.setValue(selectedItem);
+            }
+        }
+    }
+</script>
