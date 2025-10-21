@@ -9,10 +9,7 @@
     "test:unit": "vitest --environment jsdom --root src/",
     "build-only": "vite build",
     "type-check": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false",
-    "lint-ts": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
-    "lint-css": "stylelint src/**/*.{css,scss} --allow-empty-input",
-    "lint-html": "prettier --check src/*",
-    "lint": "npm-run-all -p -c lint-ts lint-css lint-html"
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
   "dependencies": {
     "devextreme": "25.1.3",

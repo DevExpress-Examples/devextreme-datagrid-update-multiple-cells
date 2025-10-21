@@ -1,12 +1,19 @@
 <script setup lang="ts">
 import 'devextreme/dist/css/dx.material.blue.light.compact.css';
-import { DxDataGrid, DxColumn, DxEditing, DxLookup } from 'devextreme-vue/data-grid';
+import {
+  DxDataGrid,
+  DxColumn,
+  DxEditing,
+  DxLookup,
+} from 'devextreme-vue/data-grid';
 import type { DxDataGridTypes } from 'devextreme-vue/data-grid';
 import type { ValueChangedEvent } from 'devextreme/ui/lookup';
 import type { Customer, Employee } from '../types';
 import { customers, employees } from '../data';
 
-const onEditorPreparing = (e: DxDataGridTypes.EditorPreparingEvent<Employee, number>): void => {
+const onEditorPreparing = (
+  e: DxDataGridTypes.EditorPreparingEvent<Employee, number>
+): void => {
   if (e.parentType === 'dataRow' && e.dataField === 'CustomerID') {
     e.editorOptions.onValueChanged = function(ev: ValueChangedEvent): void {
       const selectedItem = ev.component.option('selectedItem') as Customer;
