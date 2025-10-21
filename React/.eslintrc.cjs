@@ -1,1 +1,44 @@
-module.exports = {root:true,env:{browser:true,es2020:true},extends:["eslint:recommended","plugin:@typescript-eslint/recommended","plugin:react-hooks/recommended"],ignorePatterns:["dist",".eslintrc.cjs"],parser:"@typescript-eslint/parser",plugins:["react-refresh","@typescript-eslint"],rules:{"react-refresh/only-export-components":["warn",{allowConstantExport:true}],"@typescript-eslint/indent":["error",2],"@typescript-eslint/semi":["error","always"],"@typescript-eslint/member-delimiter-style":["error",{multiline:{delimiter:"semi",requireLast:true},singleline:{delimiter:"semi",requireLast:false}}],"@typescript-eslint/quotes":["error","single"],"@typescript-eslint/comma-dangle":["error","always-multiline"],"linebreak-style":["error","windows"],"space-before-function-paren":"off","@typescript-eslint/space-before-function-paren":"off","@typescript-eslint/func-call-spacing":"off","no-spaced-func":"off","@typescript-eslint/method-signature-style":"off","no-unused-vars":"off","@typescript-eslint/no-unused-vars":["error",{"argsIgnorePattern":"^_"}]}}
+module.exports = {
+  root: true,
+  extends: ['devextreme/spell-check'],
+  overrides: [{
+    files: ['*.ts', '*.tsx'],
+    extends: ['devextreme/react'],
+    env: {
+      browser: true,
+      es6: true
+    },
+    parserOptions: {
+      project: './tsconfig.json',
+      'createDefaultProgram': true,
+      ecmaVersion: 2022,
+      sourceType: 'module',
+    },
+    rules: {
+      "react/react-in-jsx-scope": "off",
+      "import/no-extraneous-dependencies": ["error", {
+        "devDependencies": [
+          "**/vitest.config.ts", // allow vitest in config file
+          "**/vite.config.ts", // allow vite in config file
+          "**/*.test.tsx",      // allow test files if needed
+          "**/setupTests.ts", // allow setup tests file
+        ]
+      }]
+    },
+    globals: {
+      System: false,
+      AzureGateway: false,
+      AzureFileSystem: false,
+    },
+    settings: {
+      react: {
+        createClass: 'createReactClass',
+        'pragma': 'React',
+        version: '18.2',
+      },
+      propWrapperFunctions: [
+        'forbidExtraProps',
+      ],
+    },
+  }]
+};

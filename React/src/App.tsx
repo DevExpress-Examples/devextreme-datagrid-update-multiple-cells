@@ -12,10 +12,11 @@ import type { DataGridTypes } from 'devextreme-react/data-grid';
 import type { Customer, Employee } from './types';
 import { customers, employees } from './data';
 
-function App (): JSX.Element {
-  const onEditorPreparing = useCallback ((e: DataGridTypes.EditorPreparingEvent<Employee, number>): void => {
+function App(): JSX.Element {
+  const onEditorPreparing = useCallback((e: DataGridTypes.EditorPreparingEvent<Employee, number>): void => {
     if (e.parentType === 'dataRow' && e.dataField === 'CustomerID') {
-      e.editorOptions.onValueChanged = function (event: { component: { option(key: string): Customer } }): void {
+      // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars, @typescript-eslint/space-before-function-paren
+      e.editorOptions.onValueChanged = function(event: { component: { option: (_key: string) => Customer } }): void {
         const selectedItem = event.component.option('selectedItem');
         if (e.setValue) {
           e.setValue(selectedItem);
@@ -24,7 +25,7 @@ function App (): JSX.Element {
     }
   }, []);
 
-  const setCellValue = useCallback ((rowData: Employee, value: Customer): void => {
+  const setCellValue = useCallback((rowData: Employee, value: Customer): void => {
     rowData.CustomerID = value.CustomerID;
     rowData.Address = value.Address;
     rowData.Phone = value.Phone;
@@ -35,7 +36,7 @@ function App (): JSX.Element {
       <DataGrid
         dataSource={employees}
         onEditorPreparing={onEditorPreparing}>
-        <Editing 
+        <Editing
           allowUpdating={true}
           allowAdding={true} />
 
