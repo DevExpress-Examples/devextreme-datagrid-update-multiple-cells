@@ -1,20 +1,22 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import type { Customer, Employee } from './types';
 import { DxDataGridComponent, type DxDataGridTypes } from 'devextreme-angular/ui/data-grid';
 import type { ValueChangedEvent } from 'devextreme/ui/lookup';
+import type { Customer, Employee } from './types';
 import { AppService } from './app.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
   @ViewChild(DxDataGridComponent) dataGrid!: DxDataGridComponent<Employee, number>;
+
   employees: Employee[] = [];
+
   customers: Customer[] = [];
 
-  constructor(private service: AppService) {}
+  constructor(private readonly service: AppService) {}
 
   ngOnInit(): void {
     this.employees = this.service.getEmployees();
