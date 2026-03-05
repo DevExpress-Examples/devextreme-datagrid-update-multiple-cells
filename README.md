@@ -35,7 +35,7 @@ This example demonstrates how to update multiple cell values after a user select
     - [data.ts](React/src/data.ts)
     - [types.ts](React/src/types.ts)
 - **ASP.NET Core**    
-    - [Index.cshtml](ASP.NET Core/Views/Home/Index.cshtml)
+    - [Index.cshtml](<ASP.NET Core/Views/Home/Index.cshtml>)
 
 ## Documentation
 
