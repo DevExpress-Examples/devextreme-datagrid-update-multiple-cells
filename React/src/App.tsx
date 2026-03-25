@@ -15,7 +15,6 @@ import { customers, employees } from './data';
 function App(): JSX.Element {
   const onEditorPreparing = useCallback((e: DataGridTypes.EditorPreparingEvent<Employee, number>): void => {
     if (e.parentType === 'dataRow' && e.dataField === 'CustomerID') {
-      // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars, @typescript-eslint/space-before-function-paren
       e.editorOptions.onValueChanged = function(event: { component: { option: (_key: string) => Customer } }): void {
         const selectedItem = event.component.option('selectedItem');
         if (e.setValue) {
