@@ -1,21 +1,43 @@
-import { Component } from '@angular/core';
-import { ClickEvent } from 'devextreme/ui/button';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { DxDataGridComponent, type DxDataGridTypes } from 'devextreme-angular/ui/data-grid';
+import type { ValueChangedEvent } from 'devextreme/ui/lookup';
+import type { Customer, Employee } from './types';
+import { AppService } from './app.service';
 
 @Component({
-    selector: 'app-root',
-    templateUrl: './app.component.html',
-    styleUrls: ['./app.component.scss'],
-    standalone: false
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss'],
+  standalone: false,
 })
-export class AppComponent {
-  title = 'Angular';
+export class AppComponent implements OnInit {
+  @ViewChild(DxDataGridComponent) dataGrid!: DxDataGridComponent<Employee, number>;
 
-  counter = 0;
+  employees: Employee[] = [];
 
-  buttonText = 'Click count: 0';
+  customers: Customer[] = [];
 
-  onClick(_e: ClickEvent): void {
-    this.counter++;
-    this.buttonText = `Click count: ${this.counter}`;
+  constructor(private readonly service: AppService) {}
+
+  ngOnInit(): void {
+    this.employees = this.service.getEmployees();
+    this.customers = this.service.getCustomers();
+  }
+
+  onEditorPreparing(e: DxDataGridTypes.EditorPreparingEvent<Employee, number>): void {
+    if (e.parentType === 'dataRow' && e.dataField === 'CustomerID') {
+      e.editorOptions.onValueChanged = (ev: ValueChangedEvent): void => {
+        const selectedItem = ev.component.option('selectedItem') as Customer;
+        if (!selectedItem || !e.setValue) return;
+        e.setValue(selectedItem);
+      };
+    }
+  }
+
+  setCellValue(rowData: Employee, value: Customer): void {
+    if (!rowData || !value) return;
+    rowData.CustomerID = value.CustomerID;
+    rowData.Address = value.Address;
+    rowData.Phone = value.Phone;
   }
 }
