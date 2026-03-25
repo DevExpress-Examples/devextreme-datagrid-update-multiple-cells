@@ -15,7 +15,7 @@ import { customers, employees } from './data';
 function App(): JSX.Element {
   const onEditorPreparing = useCallback((e: DataGridTypes.EditorPreparingEvent<Employee, number>): void => {
     if (e.parentType === 'dataRow' && e.dataField === 'CustomerID') {
-      e.editorOptions.onValueChanged = function(event: { component: { option: (_key: string) => Customer } }): void {
+      e.editorOptions.onValueChanged = function (event: { component: { option: (_key: string) => Customer } }): void {
         const selectedItem = event.component.option('selectedItem');
         if (e.setValue) {
           e.setValue(selectedItem);
