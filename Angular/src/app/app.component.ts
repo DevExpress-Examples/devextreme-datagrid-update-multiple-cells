@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { DxDataGridComponent, type DxDataGridTypes } from 'devextreme-angular/ui/data-grid';
 import type { ValueChangedEvent } from 'devextreme/ui/lookup';
 import type { Customer, Employee } from './types';
@@ -8,6 +8,7 @@ import { AppService } from './app.service';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class AppComponent implements OnInit {
